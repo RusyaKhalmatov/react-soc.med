@@ -1,14 +1,12 @@
 import React from 'react';
 import s from './Dialogs.module.css';
-import {NavLink} from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import {sendNewMessageActionCreator, updateNewMessageBodyActionCreator} from "../../redux/reducers/dialogsPageRecuer";
+
 
 
 const Dialogs = (props) => {
-    let state = props.store.getState();
-    let dialogsPage = state.dialogsPage;
+    let dialogsPage = props.dialogsPage;
 
     let dialogsElement = dialogsPage.dialogsData.map(
         dialog => <DialogItem name={dialog.name} id={dialog.id}/>
@@ -20,14 +18,13 @@ const Dialogs = (props) => {
     );
 
     let onSendMessageClick = () => {
-        props.store.dispatch(sendNewMessageActionCreator());
+        props.onSendMsgClick();
     };
 
     let onNewMessageChange = (e) => {
         let body = e.target.value; //e.target -> textarea
         props.onNewMesChange(body);
-        //props.store.dispatch(updateNewMessageBodyActionCreator(body));
-    }
+    };
 
     return (
 
@@ -53,6 +50,6 @@ const Dialogs = (props) => {
 
 
     );
-}
+};
 
 export default Dialogs;
