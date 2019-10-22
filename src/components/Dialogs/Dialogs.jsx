@@ -25,7 +25,8 @@ const Dialogs = (props) => {
 
     let onNewMessageChange = (e) => {
         let body = e.target.value; //e.target -> textarea
-        props.store.dispatch(updateNewMessageBodyActionCreator(body));
+        props.onNewMesChange(body);
+        //props.store.dispatch(updateNewMessageBodyActionCreator(body));
     }
 
     return (

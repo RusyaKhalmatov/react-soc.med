@@ -24,12 +24,12 @@ const DialogsContainer = (props) => {
         props.store.dispatch(sendNewMessageActionCreator());
     };
 
-    let onNewMessageChange = (e) => {
+    let onNewMessageChange = (body) => {
         props.store.dispatch(updateNewMessageBodyActionCreator(body));
     }
 
     return (
-        <Dialogs/>
+        <Dialogs onNewMesChange = { onNewMessageChange }/>
         );
 }
 
