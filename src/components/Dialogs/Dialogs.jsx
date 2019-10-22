@@ -4,10 +4,9 @@ import {NavLink} from 'react-router-dom';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import {sendNewMessageActionCreator, updateNewMessageBodyActionCreator} from "../../redux/reducers/dialogsPageRecuer";
-import Dialogs from "./Dialogs";
 
 
-const DialogsContainer = (props) => {
+const Dialogs = (props) => {
     let state = props.store.getState();
     let dialogsPage = state.dialogsPage;
 
@@ -25,12 +24,34 @@ const DialogsContainer = (props) => {
     };
 
     let onNewMessageChange = (e) => {
+        let body = e.target.value; //e.target -> textarea
         props.store.dispatch(updateNewMessageBodyActionCreator(body));
     }
 
     return (
-        <Dialogs/>
-        );
+
+        <div className={s.dialogs}>
+            <div className={s.dialogItems}>
+                {dialogsElement}
+
+            </div>
+            <div className={s.messages}>
+                <div>{messagesElements}</div>
+
+
+                <div className={s.messageCreate}>
+                    <textarea onChange={onNewMessageChange} value={dialogsPage.newMessageBody} cols="70" rows="10"/>
+                    <br/>
+                    <button>clip</button>
+                    <button onClick={onSendMessageClick}>Send</button>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    );
 }
 
-export default DialogsContainer;
+export default Dialogs;

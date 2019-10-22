@@ -1,0 +1,22 @@
+.container img{
+    width: 30px;
+    height:30px;
+    border-radius: 30px;
+}
+
+
+
+.container{
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.container p{
+    color:white;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.elem{
+    margin-right: 20px;
+}

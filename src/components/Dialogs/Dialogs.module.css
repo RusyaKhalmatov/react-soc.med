@@ -1,0 +1,41 @@
+.dialogs
+{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    padding: 15px;
+}
+
+.messages{
+    padding:10px;
+}
+
+
+.dialogItems{
+    padding:10px;
+    color:white;
+}
+
+.dialogItems .active
+{
+    color: red;
+}
+
+
+.messageCreate
+{
+    margin-top: 35%;
+}
+
+textarea{
+    padding: 10px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+}
+
+.messageCreate button
+{
+    width: 100px;
+    height: 30px;
+   margin-left: 15px;
+   
+}
