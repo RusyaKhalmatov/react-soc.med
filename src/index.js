@@ -4,21 +4,23 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './redux/redux-store';
+import StoreContext from "./StoreContext";
 
 
-let rerenderEntireTree = (state) =>
-{
-   
-        ReactDOM.render(
-        <App appState = {store.getState()} dispatch = {store.dispatch.bind(store)} store = {store}
-            />, document.getElementById('root'));
- 
+let rerenderEntireTree = (state) => {
+
+    ReactDOM.render(
+        <StoreContext.Provider value={store}>
+            <App />
+        </StoreContext.Provider>
+        , document.getElementById('root'));
+
 }
 
 
 rerenderEntireTree(store.getState());
-store.subscribe(() =>{
-    let state  = store.getState();
+store.subscribe(() => {
+    let state = store.getState();
     rerenderEntireTree(state);
 });
 
