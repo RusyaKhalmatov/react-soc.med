@@ -1,7 +1,7 @@
 import React from 'react';
 import {sendNewMessageActionCreator, updateNewMessageBodyActionCreator} from "../../redux/reducers/dialogsPageRecuer";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../StoreContext";
+
 
 
 const DialogsContainer = (props) => {
