@@ -22,7 +22,9 @@ const Nav = () =>{
           <div className={s.item}>
             <NavLink to="/settings">Settings</NavLink>
           </div>
-
+            <div className={s.item}>
+                <NavLink to="/users">Users</NavLink>
+            </div>
           <div className="FriendsNav">
             <FriendsBar />
           </div>
