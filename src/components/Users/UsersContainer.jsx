@@ -14,9 +14,9 @@ class UsersContainer extends React.Component {
 
     componentDidMount() { //когда объект уже создан, вызввается данная функция
         this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{withCredentials:true}).then(
             responce => {
-                //debugger;
+                
                 this.props.toggleIsFetching(false);
                 this.props.setUsers(responce.data.items);
                 this.props.setTotalUsersCount(responce.data.totalCount);
@@ -28,9 +28,9 @@ class UsersContainer extends React.Component {
         this.props.setCurrentPage(pageNumber);
 
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {withCredentials:true}).then(
             responce => {
-                //debugger;
+                
                 this.props.toggleIsFetching(false);
                 this.props.setUsers(responce.data.items);
             }
