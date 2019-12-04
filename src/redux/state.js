@@ -42,7 +42,18 @@ let store = {
                     {id: 5, name: "Sobit"}
                 ]
             },
+       /* usersPage:
+            {
+            users: [
+                {id: 1,photoURL:"https://yandex.uz/images/search?pos=6&img_url=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fd8%2F80%2F60%2Fd88060cbfba44538ee4e9d29ecfb43d5.jpg&text=%D0%BD%D0%B0%D0%B3%D0%B8%D0%B5%D0%B2&rpt=simage", fullname:"Rustam", status: "Hey Rustam me", location: {city:"Tashkent", country:"Uzbekistan"}, followed: false},
+                {id: 2,photoURL:"https://yandex.uz/images/search?pos=6&img_url=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fd8%2F80%2F60%2Fd88060cbfba44538ee4e9d29ecfb43d5.jpg&text=%D0%BD%D0%B0%D0%B3%D0%B8%D0%B5%D0%B2&rpt=simage", fullname:"Timur" , status: "Timur fasd", location: {city:"Tashkent", country:"Uzbekistan"}, followed: true},
+                {id: 3,photoURL:"https://yandex.uz/images/search?pos=6&img_url=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fd8%2F80%2F60%2Fd88060cbfba44538ee4e9d29ecfb43d5.jpg&text=%D0%BD%D0%B0%D0%B3%D0%B8%D0%B5%D0%B2&rpt=simage", fullname:"Avzal" , status: "Good fasd", location: {city:"Tashkent", country:"Uzbekistan"}, followed: true},
+                {id: 4,photoURL:"https://yandex.uz/images/search?pos=6&img_url=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fd8%2F80%2F60%2Fd88060cbfba44538ee4e9d29ecfb43d5.jpg&text=%D0%BD%D0%B0%D0%B3%D0%B8%D0%B5%D0%B2&rpt=simage", fullname:"Ratmir" , status: "False fasade fasd", location: {city:"Tashkent", country:"Uzbekistan"}, followed: true},
+                {id: 5,photoURL:"https://yandex.uz/images/search?pos=6&img_url=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fd8%2F80%2F60%2Fd88060cbfba44538ee4e9d29ecfb43d5.jpg&text=%D0%BD%D0%B0%D0%B3%D0%B8%D0%B5%D0%B2&rpt=simage", fullname:"Botir" , status: "Im the best", location: {city:"Tashkent", country:"Uzbekistan"}, followed: false},
+                {id: 6,photoURL:"https://yandex.uz/images/search?pos=6&img_url=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fd8%2F80%2F60%2Fd88060cbfba44538ee4e9d29ecfb43d5.jpg&text=%D0%BD%D0%B0%D0%B3%D0%B8%D0%B5%D0%B2&rpt=simage", fullname:"Bobur" , status: "Who knows", location: {city:"Tashkent", country:"Uzbekistan"}, followed: true}
 
+            ]
+        }*/
 
     },
     rerenderEntireTree() {
