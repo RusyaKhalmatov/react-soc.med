@@ -4,21 +4,16 @@ const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHIN';
+const TOGGLE_IS_FOLLOWINGPROGRESS = 'TOGGLE-IS-FOLLOWINGPROGRESS';
 
 let initialState = {
     users:
-        [
-            /*{id: 1,photoURL:"https://lentachel.ru/netcat_files/Image/foto/2019/09/08/Dmitriy_Nagiev.jpg", fullname:"Rustam", status: "Hey Rustam me", location: {city:"Tashkent", country:"Uzbekistan"}, followed: false},
-            {id: 2,photoURL:"https://lentachel.ru/netcat_files/Image/foto/2019/09/08/Dmitriy_Nagiev.jpg", fullname:"Timur" , status: "Timur fasd", location: {city:"Tashkent", country:"Uzbekistan"}, followed: true},
-            {id: 3,photoURL:"https://lentachel.ru/netcat_files/Image/foto/2019/09/08/Dmitriy_Nagiev.jpg", fullname:"Avzal" , status: "Good fasd", location: {city:"Tashkent", country:"Uzbekistan"}, followed: true},
-            {id: 4,photoURL:"https://lentachel.ru/netcat_files/Image/foto/2019/09/08/Dmitriy_Nagiev.jpg", fullname:"Ratmir" , status: "False fasade fasd", location: {city:"Tashkent", country:"Uzbekistan"}, followed: true},
-            {id: 5,photoURL:"https://lentachel.ru/netcat_files/Image/foto/2019/09/08/Dmitriy_Nagiev.jpg", fullname:"Botir" , status: "Im the best", location: {city:"Tashkent", country:"Uzbekistan"}, followed: false},
-            {id: 6,photoURL:"https://lentachel.ru/netcat_files/Image/foto/2019/09/08/Dmitriy_Nagiev.jpg", fullname:"Bobur" , status: "Who knows", location: {city:"Tashkent", country:"Uzbekistan"}, followed: true},
-        */],
+        [],
     pageSize: 15,
     totalUsersCount:0,
     currentPage: 1,
     isFetching: true,
+    followingInProgress: false
 };
 
 const FOLLOW = 'FOLLOW';
@@ -67,6 +62,10 @@ const usersReducer = (stateUsers = initialState, action) => {
             return{ ...stateUsers, isFetching: action.isFetching};
 
         }
+        case TOGGLE_IS_FOLLOWINGPROGRESS:
+        {
+            return{ ...stateUsers, followingInProgress: action.isFollowingInProgress};
+        }
         default:
             return stateUsers;
     }
@@ -78,5 +77,19 @@ export const setUsersActionCreator = (users) => ({type:SET_USERS,users});
 export const setCurrentPageActionCreator = (currentPage) => ({type:SET_CURRENT_PAGE, currentPage})
 export const setTotalCountActionCreator = (totalCount) => ({type:SET_TOTAL_COUNT, totalCount});
 export const setToggleIsFetchingActionCreator = (isFetching) => ({type:TOGGLE_IS_FETCHING, isFetching});
+export const setToggleIsFollowingInProgressActionCreator = (isFollowingInProgress) => ({type:TOGGLE_IS_FOLLOWINGPROGRESS, isFollowingInProgress});
+
+export const getUsersThunkCreator = (currentPage, pageSize) =>{
+ return(dispatch) => {
+    dispatch(toggleIsFetching(true));
+        usersAPI.getUsers(currentPage,pageSize).then( // function getUsers is taken from file api.js and it's used to short the code
+            data => {
+                dispatch(toggleIsFetching(false));
+                dispatch(setUsers(data.items));
+                dispatch(setTotalUsersCount(data.totalCount));
+            }  
+        );
+    }
+}
 
 export default usersReducer;

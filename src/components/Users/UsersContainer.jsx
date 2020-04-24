@@ -1,38 +1,39 @@
 import React from 'react';
 import {
     followActionCreator,
-    setCurrentPageActionCreator, setToggleIsFetchingActionCreator, setTotalCountActionCreator,
+    setCurrentPageActionCreator, setToggleIsFetchingActionCreator, setTotalCountActionCreator, setToggleIsFollowingInProgressActionCreator,
     setUsersActionCreator,
-    unfollowActionCreator
+    unfollowActionCreator,
+    getUsersThunkCreator
 } from "../../redux/reducers/usersPageReducer";
 import {connect} from "react-redux";
 import * as axios from "axios";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
+import { getUsers } from '../../API/api';
 
 class UsersContainer extends React.Component {
 
     componentDidMount() { //когда объект уже создан, вызввается данная функция
-        this.props.toggleIsFetching(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{withCredentials:true}).then(
-            responce => {
-                
+        /*this.props.toggleIsFetching(true);
+        getUsers(this.props.currentPage,this.props.pageSize).then( // function getUsers is taken from file api.js and it's used to short the code
+            data => {
                 this.props.toggleIsFetching(false);
-                this.props.setUsers(responce.data.items);
-                this.props.setTotalUsersCount(responce.data.totalCount);
-            }                                                             
-        );
+                this.props.setUsers(data.items);
+                this.props.setTotalUsersCount(data.totalCount);
+            }  
+        );*/
+        this.props.getUsersThunkCreator(this.props.currentPage,this.props.pageSize);
     }
     onPageChanged = (pageNumber) => {
         this.props.toggleIsFetching(true);
         this.props.setCurrentPage(pageNumber);
 
-
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {withCredentials:true}).then(
-            responce => {
+        getUsers(pageNumber,this.props.pageSize).then( // function getUsers is taken from file api.js and it's used to short the code
+            data => {
                 
                 this.props.toggleIsFetching(false);
-                this.props.setUsers(responce.data.items);
+                this.props.setUsers(data.items);
             }
         );
     };
@@ -47,8 +48,9 @@ class UsersContainer extends React.Component {
                 onPageChanged = {this.onPageChanged}
                 follow = {this.props.follow}
                 unfollow = {this.props.unfollow}
-                users = {this.props.users}
-
+                users = {this.props.users} 
+                toggleIsFollowingInProgress = {this.props.toggleIsFollowingInProgress}
+                followingInProgress = {this.props.followingInProgress}
                 />
            
         </>
@@ -62,6 +64,7 @@ let mapStateToProps = (state) => {
         totalUsers: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress,
     };
 };
 
@@ -102,7 +105,10 @@ let mapDispatchToProps = (dispatch) => {
         setUsers:setUsersActionCreator,
         setCurrentPage:setCurrentPageActionCreator,
         setTotalUsersCount: setTotalCountActionCreator,
-        toggleIsFetching: setToggleIsFetchingActionCreator
+        toggleIsFetching: setToggleIsFetchingActionCreator,
+        toggleIsFollowingInProgress: setToggleIsFollowingInProgressActionCreator,
+        getUsersThunkCreator, 
+
     })(UsersContainer);
 /*
 export default connect(mapStateToProps,mapDispatchToProps)(UsersContainer);*/
